@@ -8,7 +8,7 @@
         <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" required [(ngModel)]="selectedState">
         <mat-autocomplete #auto="matAutocomplete" (click)="onSelectState(selectedState)">
             <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                <img alt="" class="example-option-img" [src]="state.flag" height="25">
+                <img class="example-option-img" [src]="state.flag" height="25">
                 <span>{{state.name}}</span>
             </mat-option>
         </mat-autocomplete>

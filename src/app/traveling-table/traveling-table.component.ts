@@ -1,13 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Trip } from '../interfaces/trip.interface';
 import { TripService } from '../services/trip.service';
-
-// const ELEMENT_DATA: TableRow[] = [
-//   { flag: 'f1', name: 'C1', startDate: new Date, endDate: new Date, notes: 'This is note' },
-//   { flag: 'f2', name: 'C2', startDate: new Date, endDate: new Date, notes: 'This is note' },
-//   { flag: 'f3', name: 'C3', startDate: new Date, endDate: new Date, notes: 'This is note' },
-// ];
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-traveling-table',
   templateUrl: './traveling-table.component.html',
@@ -15,9 +9,11 @@ import { TripService } from '../services/trip.service';
 })
 export class TravelingTableComponent implements OnInit {
 
-  constructor(private tripService: TripService) { }
+  constructor(
+    private tripService: TripService,
+    private toastr: ToastrService
+    ) { }
 
-  // @Input() tripToAdd: any;
   tripToAdd!: Trip;
   displayedColumns: string[] = ['flag', 'name', 'startDate', 'endDate', 'notes', 'action'];
   dataSource!: Trip[];
@@ -44,5 +40,7 @@ export class TravelingTableComponent implements OnInit {
   deleteTrip(stateName: string) {
     console.log('trip:', stateName)
     this.dataSource = this.dataSource.filter(e => e.name !== stateName)
+    this.toastr.success('Trip deleted successfully');
+
   }
 }

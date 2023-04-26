@@ -6,7 +6,7 @@
 
         <ng-container class="table-column" matColumnDef="flag">
             <th mat-header-cell *matHeaderCellDef> Flag </th>
-            <td mat-cell *matCellDef="let element"> {{element.flag}} </td>
+            <td mat-cell *matCellDef="let element"> <img [src]="element.flag" alt=""> </td>
         </ng-container>
 
         <ng-container class="table-column" matColumnDef="name">
