@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TableRow } from '../interfaces/table-row.interface';
 import { Trip } from '../interfaces/trip.interface';
 import { TripService } from '../services/trip.service';
 
@@ -21,7 +20,7 @@ export class TravelingTableComponent implements OnInit {
   // @Input() tripToAdd: any;
   tripToAdd!: Trip;
   displayedColumns: string[] = ['flag', 'name', 'startDate', 'endDate', 'notes', 'action'];
-  dataSource!: TableRow[];
+  dataSource!: Trip[];
 
   ngOnInit(): void {
     this.dataSource = this.tripService.getTrips()
