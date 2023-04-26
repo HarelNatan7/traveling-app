@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TableRow } from '../interfaces/table-row.interface';
 import { Trip } from '../interfaces/trip.interface';
-import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../services/trip.service';
 
-const ELEMENT_DATA: TableRow[] = [
-  { flag: 'httt', name: 'C1', startDate: new Date, endDate: new Date, notes: 'This is note' },
-  { flag: 'httt', name: 'C2', startDate: new Date, endDate: new Date, notes: 'This is note' },
-  { flag: 'httt', name: 'C3', startDate: new Date, endDate: new Date, notes: 'This is note' },
-];
+// const ELEMENT_DATA: TableRow[] = [
+//   { flag: 'f1', name: 'C1', startDate: new Date, endDate: new Date, notes: 'This is note' },
+//   { flag: 'f2', name: 'C2', startDate: new Date, endDate: new Date, notes: 'This is note' },
+//   { flag: 'f3', name: 'C3', startDate: new Date, endDate: new Date, notes: 'This is note' },
+// ];
 
 @Component({
   selector: 'app-traveling-table',
@@ -22,9 +21,10 @@ export class TravelingTableComponent implements OnInit {
   // @Input() tripToAdd: any;
   tripToAdd!: Trip;
   displayedColumns: string[] = ['flag', 'name', 'startDate', 'endDate', 'notes', 'action'];
-  dataSource = ELEMENT_DATA;
+  dataSource!: TableRow[];
 
   ngOnInit(): void {
+    this.dataSource = this.tripService.getTrips()
     this.tripService.getTrip().subscribe(trip => {
       this.tripToAdd = trip
       this.addTrip()
@@ -39,12 +39,11 @@ export class TravelingTableComponent implements OnInit {
       endDate: this.tripToAdd.endDate,
       notes: this.tripToAdd.notes,
     }
-    ELEMENT_DATA.push(newRow)
+    this.dataSource.push(newRow)
   }
 
   deleteTrip(stateName: string) {
     console.log('trip:', stateName)
-    // const tripToDeleteIdx = ELEMENT_DATA.findIndex(e => e.name === stateName)
-    this.dataSource = ELEMENT_DATA.filter(e => e.name !== stateName)
+    this.dataSource = this.dataSource.filter(e => e.name !== stateName)
   }
 }
