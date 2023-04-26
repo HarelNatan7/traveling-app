@@ -1,19 +1,39 @@
-<form>
+<!-- <form> -->
+<!-- <mat-form-field class="form-field"> -->
+<form class="main-form">
     <h2>Plan Your Next Trip</h2>
-    <label for="country">
-        Select Country:
-        <input type="text" name="country">
-    </label>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>State</mat-label>
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                <img alt="" class="example-option-img" [src]="state.flag" height="25">
+                <span>{{state.name}}</span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
 
-    <label for="date">
-        Select Date:
-        <input type="date">
-    </label>
+    <mat-form-field>
+        <input matInput [matDatepicker]="startDatepicker" placeholder="Start Date" [value]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+    </mat-form-field>
 
-    <label for="notes">
-        Take Notes:
-        <textarea name="notes" id="" cols="20" rows="7"></textarea>
-    </label>
+    <mat-form-field>
+        <input matInput [matDatepicker]="endDatepicker" placeholder="End Date" [value]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+    </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+        <mat-label>Write your notes here...</mat-label>
+        <textarea matInput placeholder="Ex. Stay tuned"></textarea>
+    </mat-form-field>
 
+    <button class="btn-submit" mat-button>Submit Trip</button>
+
+    <!-- <mat-form-field> -->
+        <!-- <button type="submit">A</button> -->
+    <!-- </mat-form-field> -->
 </form>
+<!-- </mat-form-field> -->

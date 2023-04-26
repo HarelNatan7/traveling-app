@@ -1,3 +1,37 @@
-<table>
-<th>Your Tripes</th>    
-</table>
+<div class="container">
+
+    <h1>Your Trips</h1>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container class="table-column" matColumnDef="flag">
+            <th mat-header-cell *matHeaderCellDef> Flag </th>
+            <td mat-cell *matCellDef="let element"> {{element.flag}} </td>
+        </ng-container>
+
+        <ng-container class="table-column" matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container class="table-column" matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.startDate.toDateString()}} </td>
+        </ng-container>
+
+        <ng-container class="table-column" matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.endDate.toDateString()}} </td>
+        </ng-container>
+
+        <ng-container class="table-column" matColumnDef="notes">
+            <th mat-header-cell *matHeaderCellDef> Notes </th>
+            <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+</div>
