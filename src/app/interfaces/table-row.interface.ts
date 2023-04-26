@@ -1,7 +1,7 @@
 export interface TableRow {
     flag: string;
     name: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: Date | null;
+    endDate: Date | null;
     notes: string;
   }

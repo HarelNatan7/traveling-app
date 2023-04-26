@@ -1,8 +1,9 @@
 import { State } from "./state.interface";
 
 export interface Trip {
-    state: State;
-    startDate: Date;
-    endDate: Date;
+    flag: string;
+    name: string;
+    startDate: Date | null;
+    endDate: Date | null;
     notes: string;
 }

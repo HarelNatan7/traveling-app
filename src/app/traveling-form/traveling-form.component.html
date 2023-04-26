@@ -1,11 +1,12 @@
-<!-- <form> -->
-<!-- <mat-form-field class="form-field"> -->
-<form class="main-form">
+
+<form class="main-form" (submit)="onAddTrip()">
+
     <h2>Plan Your Next Trip</h2>
+
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>State</mat-label>
-        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-        <mat-autocomplete #auto="matAutocomplete">
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" required [(ngModel)]="selectedState">
+        <mat-autocomplete #auto="matAutocomplete" (click)="onSelectState(selectedState)">
             <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
                 <img alt="" class="example-option-img" [src]="state.flag" height="25">
                 <span>{{state.name}}</span>
@@ -14,26 +15,22 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="startDatepicker" placeholder="Start Date" [value]="startDate">
+        <input matInput [matDatepicker]="startDatepicker" placeholder="Start Date" [value]="startDate" required (dateChange)="onStartDateChange($event)">
         <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatepicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="endDatepicker" placeholder="End Date" [value]="endDate">
+        <input matInput [matDatepicker]="endDatepicker" placeholder="End Date" [value]="endDate" required (dateChange)="onEndDateChange($event)">
         <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatepicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Write your notes here...</mat-label>
-        <textarea matInput placeholder="Ex. Stay tuned"></textarea>
+        <textarea matInput placeholder="Ex. Stay tuned" name="notes" required [(ngModel)]="notes"></textarea>
     </mat-form-field>
 
-    <button class="btn-submit" mat-button>Submit Trip</button>
+    <button class="btn-submit" mat-button type="submit">Submit Trip</button>
 
-    <!-- <mat-form-field> -->
-        <!-- <button type="submit">A</button> -->
-    <!-- </mat-form-field> -->
 </form>
-<!-- </mat-form-field> -->
