@@ -8,5 +8,4 @@ import { Trip } from './interfaces/trip.interface';
 })
 export class AppComponent {
   title = 'traveling-app';
-  data!: any
 }

@@ -5,8 +5,8 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>State</mat-label>
-        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" required [(ngModel)]="selectedState">
-        <mat-autocomplete #auto="matAutocomplete" (click)="onSelectState(selectedState)">
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" required>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectState($event)">
             <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
                 <img class="example-option-img" [src]="state.flag" height="25">
                 <span>{{state.name}}</span>
