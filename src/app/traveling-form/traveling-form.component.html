@@ -1,11 +1,11 @@
 
-<form class="main-form" (submit)="onAddTrip()">
+<form class="main-form" [formGroup]="tripForm" (submit)="onAddTrip()">
 
     <h2>Plan Your Next Trip</h2>
 
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>State</mat-label>
-        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl" required>
+        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectState($event)">
             <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
                 <img class="example-option-img" [src]="state.flag" height="25">
@@ -15,20 +15,20 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="startDatepicker" placeholder="Start Date" [value]="startDate" required (dateChange)="onStartDateChange($event)">
+        <input matInput [matDatepicker]="startDatepicker" placeholder="Start Date" [value]="startDate" formControlName="startDate">
         <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatepicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="endDatepicker" placeholder="End Date" [value]="endDate" required (dateChange)="onEndDateChange($event)">
+        <input matInput [matDatepicker]="endDatepicker" placeholder="End Date" [value]="endDate" formControlName="endDate">
         <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatepicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Write your notes here...</mat-label>
-        <textarea matInput placeholder="Ex. Stay tuned" name="notes" required [(ngModel)]="notes"></textarea>
+        <textarea matInput placeholder="Ex. Stay tuned" name="notes" formControlName="notes"></textarea>
     </mat-form-field>
 
     <button class="btn-submit" mat-button type="submit">Submit Trip</button>
