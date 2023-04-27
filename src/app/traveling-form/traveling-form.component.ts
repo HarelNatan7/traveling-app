@@ -51,7 +51,6 @@ export class TravelingFormComponent implements OnInit {
   onSelectState(event: MatAutocompleteSelectedEvent): void {
     const selectedState: any = this.states.find(state => state.name === event.option.value)
     this.selectedState = selectedState
-    console.log('this.selectedState:', this.selectedState)
   }
 
   onStartDateChange(event: MatDatepickerInputEvent<Date>): void {

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, map } from 'rxjs';
-import { Trip } from '../interfaces/trip.interface';
 import { HttpClient } from '@angular/common/http';
-import { State } from '../interfaces/state.interface';
+import { Trip } from '../interfaces/trip.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +14,7 @@ export class TripService {
   private trips?: Trip[]
 
   getTrips(): Observable<Trip[]> {
-    if (!this.trips) {
-      this.init();
-    }
+    if (!this.trips) this.init();
     return this.subject.asObservable();
   }
 
@@ -39,11 +36,6 @@ export class TripService {
     ]
     this.subject.next(arr)
     this.trips = arr
-  }
-
-
-  getCountriesData(): Observable<any> {
-    return this.http.get(`https://restcountries.com/v3.1/all?fields=name,flags`)
   }
 
   getStates(): Observable<any[]> {
