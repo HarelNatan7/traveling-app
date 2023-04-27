@@ -62,6 +62,10 @@ export class TravelingFormComponent implements OnInit {
   }
 
   onAddTrip(): void {
+    if (!this.selectedState) {
+      this.toastr.error('Please select State')
+      return
+    }
     const newTripToAdd: Trip = {
       flag: this.selectedState.flag,
       name: this.selectedState.name,
