@@ -5,7 +5,6 @@ import { finalize, first, map, startWith, tap } from 'rxjs/operators';
 
 import { TripService } from '../services/trip.service';
 import { State } from '../interfaces/state.interface';
-import { Trip } from '../interfaces/trip.interface';
 
 import { ToastrService } from 'ngx-toastr';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
